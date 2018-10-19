@@ -1,0 +1,50 @@
+---
+- name: run it all
+  hosts: all
+  become: true
+
+  tasks:
+  - name: Install nginx
+    yum:
+      name: # with loop will be removed in 2.11
+        - nginx
+        - unzip
+        - libselinux-python
+        - openssl
+      state: present
+      update_cache: yes
+
+  - name: Move nginx conf
+    template:
+      src: config/nginx.conf
+      dest: /etc/nginx/conf.d/
+
+  - name: Move app
+    template:
+      src: config/sample-app.service
+      dest: /lib/systemd/system/
+
+  - name: Move key
+    template:
+      src: files/self-signed.key
+      dest: /etc/ssl/certs/
+
+  - name: Move crt
+    template:
+      src: files/self-signed.crt
+      dest: /etc/ssl/certs/
+
+  - name: Unzip application
+    unarchive:
+      src: application.zip
+      dest: /opt/
+
+  - name: Start app service
+    systemd:
+      name: sample-app
+      state: started
+
+  - name: Start NGiNX
+    systemd:
+      name: nginx
+      state: started

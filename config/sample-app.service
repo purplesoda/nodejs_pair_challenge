@@ -1,0 +1,11 @@
+[Unit]
+Description=Sample NodeJS Application
+After=network.target # wait until after the network stack is online
+
+[Service]
+Environment=NODE_PORT=8000 # run node on port 8000
+ExecStart=/usr/bin/python /opt/application/server.py # envoke python (albeit old) to run script
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
