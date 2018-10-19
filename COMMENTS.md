@@ -12,7 +12,7 @@
 - Configured all necessary proxy_set_headers and eventually pass to upstream
 ```
 
-# Step 2 - Configure playbook.yml
+# Step 2 - Requirements:
 - Nginx is installed successfully
 - Ansible copies all files to the expecting directories
 - Appropriate file permissions are set for all files (to my preferences)
@@ -21,7 +21,7 @@
 - Starts nginx and sample-app services
 - Prints "Pass" on all four tests
 
-### Requirements:
+### Configure playbook.yml
 ```
 - Install nginx and other dependencies (python, openssl and unzip)
 - Move nginx.conf file created in step 1 to expecting directory
