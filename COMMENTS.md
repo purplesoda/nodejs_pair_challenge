@@ -1,10 +1,10 @@
-### Step 1 - Requirements
+# Step 1 - Requirements
 - Nginx accepts requests on 80 & 443
 - HTTP redirects successfully to HTTPS
 - Used provided certificate files and set correct permissions
 - Nginx proxies requests through the upstream directive
 
-# Configuring nginx:
+### Configuring nginx:
 ```
 - Create upstream group (ran into issues here specifically because I'm accustomed to using localhost rather than 127.0.0.1 which is what the python script is expecting)
 - Setup 301 permanent redirect to https
@@ -12,7 +12,7 @@
 - Configured all necessary proxy_set_headers and eventually pass to upstream
 ```
 
-### Step 2 - Configure playbook.yml
+# Step 2 - Configure playbook.yml
 - Nginx is installed successfully
 - Ansible copies all files to the expecting directories
 - Appropriate file permissions are set for all files (to my preferences)
@@ -21,7 +21,7 @@
 - Starts nginx and sample-app services
 - Prints "Pass" on all four tests
 
-# Requirements:
+### Requirements:
 ```
 - Install nginx and other dependencies (python, openssl and unzip)
 - Move nginx.conf file created in step 1 to expecting directory
